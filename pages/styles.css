@@ -1,0 +1,37 @@
+html{
+    font-family: sans-serif;
+    color: #ffffff;
+    background-color: #222222;
+}
+
+a:link{
+    color: aqua;
+}
+
+a:visited{
+    color: #17c7c7;
+}
+
+.liText{
+    color: #fd33ee;
+}
+
+.luText{
+    color: #efea0c;
+}
+
+.haText{
+    color: #f37632;
+}
+
+.reText{
+    color: #4646c5;
+}
+
+.chText{
+    color: #0ef884;
+}
+
+.small{
+    font-size: x-small;
+}
