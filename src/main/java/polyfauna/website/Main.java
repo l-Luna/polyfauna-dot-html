@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.*;
 import java.util.List;
+import java.util.Map;
 
 public class Main{
 	
@@ -81,9 +82,9 @@ public class Main{
 				})
 				.build();
 		Node document = parser.parse(md);
-		var yamlVisitor = new YamlFrontMatterVisitor();
+		YamlFrontMatterVisitor yamlVisitor = new YamlFrontMatterVisitor();
 		document.accept(yamlVisitor);
-		var yamlData = yamlVisitor.getData();
+		Map<String, List<String>> yamlData = yamlVisitor.getData();
 		HtmlRenderer renderer = HtmlRenderer
 				.builder()
 				.extensions(extensions)
@@ -97,9 +98,22 @@ public class Main{
 		rendered = rendered.replace("{!}", "</span>");
 		
 		// handle template replacements
-		String template = Files.readString(Path.of("./templates", yamlData.getOrDefault("template", List.of("default")).getFirst() + ".html"));
-		template = template.replace("[[CONTENT]]", rendered);
+		String type = yamlData.getOrDefault("template", List.of("default")).getFirst();
+		return handleSubstitutions(Files.readString(Path.of("./templates", type + ".html")), yamlData, type, outPath, rendered);
+	}
+	
+	private static String handleSubstitutions(String template, Map<String, List<String>> data, String type, String outPath, String rendered){
+		// this stays first, always used once
 		template = template.replace("[[OUT]]", outPath);
+		
+		// add additional styles
+		StringBuilder styles = new StringBuilder();
+		for(String style : data.getOrDefault("styles", List.of()))
+			styles.append("<link rel=\"stylesheet\" href=\"./").append(style).append(".css\">\n\t");
+		template = template.replace("[[STYLES]]", styles);
+		
+		// this stays last, introduces the most text
+		template = template.replace("[[CONTENT]]", rendered);
 		
 		return template;
 	}
