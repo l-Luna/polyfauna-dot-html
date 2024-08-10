@@ -4,6 +4,8 @@ import org.commonmark.Extension;
 import org.commonmark.ext.gfm.strikethrough.StrikethroughExtension;
 import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.ext.heading.anchor.HeadingAnchorExtension;
+import org.commonmark.node.AbstractVisitor;
+import org.commonmark.node.Link;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
@@ -76,6 +78,17 @@ public class Main{
 		Parser parser = Parser
 				.builder()
 				.extensions(extensions)
+				.postProcessor(node -> {
+					node.accept(new AbstractVisitor(){
+						public void visit(Link link){
+							super.visit(link);
+							String destination = link.getDestination();
+							if(destination.endsWith(".md"))
+								link.setDestination(destination.substring(0, destination.length() - 3) + ".html");
+						}
+					});
+					return node;
+				})
 				.build();
 		Node document = parser.parse(md);
 		HtmlRenderer renderer = HtmlRenderer
