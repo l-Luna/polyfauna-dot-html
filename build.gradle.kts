@@ -23,3 +23,9 @@ dependencies{
 tasks.test{
     useJUnitPlatform()
 }
+
+
+
+application {
+    mainClass = "polyfauna.website.Main"
+}
