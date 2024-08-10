@@ -112,6 +112,12 @@ public class Main{
 			styles.append("<link rel=\"stylesheet\" href=\"./").append(style).append(".css\">\n\t");
 		template = template.replace("[[STYLES]]", styles);
 		
+		// YAML-defined substitutions
+		for(String substitute : data.getOrDefault("substitutions", List.of())){
+			var split = substitute.split("=");
+			template = template.replace("[[" + split[0].trim() + "]]", split[1].trim());
+		}
+		
 		// this stays last, introduces the most text
 		template = template.replace("[[CONTENT]]", rendered);
 		

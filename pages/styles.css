@@ -1,7 +1,9 @@
+/* global styling */
+
 html{
     font-family: sans-serif;
     color: #ffffff;
-    background-color: #222222;
+    background-color: #333333;
 }
 
 a:link{
@@ -11,6 +13,32 @@ a:link{
 a:visited{
     color: #17c7c7;
 }
+
+/* utility classes */
+
+.small{
+    font-size: x-small;
+}
+
+.inline{
+    display: inline-block;
+}
+
+/* layouting */
+
+.container{
+    width: 75%;
+    height: 100%;
+    margin: auto;
+    padding: 15px;
+
+    border-left: black thin solid;
+    border-right: black thin solid;
+
+    background-color: #222222;
+}
+
+/* member tags */
 
 .liText{
     color: #fd33ee;
@@ -30,8 +58,4 @@ a:visited{
 
 .chText{
     color: #0ef884;
-}
-
-.small{
-    font-size: x-small;
 }
