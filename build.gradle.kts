@@ -25,7 +25,11 @@ tasks.test{
     useJUnitPlatform()
 }
 
-
+java{
+    toolchain{
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 application {
     mainClass = "polyfauna.website.Main"
