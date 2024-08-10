@@ -1,6 +1,8 @@
 package polyfauna.website;
 
 import org.commonmark.Extension;
+import org.commonmark.ext.front.matter.YamlFrontMatterExtension;
+import org.commonmark.ext.front.matter.YamlFrontMatterVisitor;
 import org.commonmark.ext.gfm.strikethrough.StrikethroughExtension;
 import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.ext.heading.anchor.HeadingAnchorExtension;
@@ -18,19 +20,6 @@ import java.util.List;
 public class Main{
 	
 	private static final List<String> memberTags = List.of("li", "lu", "ch", "ha", "re", "dy");
-	
-	private static final String template = """
-			<html lang="en">
-			<head>
-				<link rel="stylesheet" href="./OUT/styles.css">
-				<title>polyfauna</title>
-			</head>
-			
-			<body>
-			CONTENT
-			</body>
-			</html>
-			""";
 	
 	public static void main(String[] args) throws IOException{
 		Path rootPath = Path.of("./pages").toAbsolutePath().normalize();
@@ -57,7 +46,7 @@ public class Main{
 				resolved = resolved.getParent().resolve(resolved.getFileName().toString().replace(".md", ".html"));
 				
 				String text = Files.readString(path);
-				String html = renderMarkdown(text, template.replace("OUT", path.getParent().relativize(root).toString().replace('\\', '/')));
+				String html = renderMarkdown(text, path.getParent().relativize(root).toString().replace('\\', '/'));
 				Files.createDirectories(resolved.getParent());
 				Files.writeString(resolved, html, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 			}else{
@@ -69,11 +58,12 @@ public class Main{
 		}
 	}
 	
-	private static String renderMarkdown(String md, String template){
+	private static String renderMarkdown(String md, String outPath) throws IOException{
 		List<Extension> extensions = List.of(
 				StrikethroughExtension.create(),
 				TablesExtension.create(),
-				HeadingAnchorExtension.create()
+				HeadingAnchorExtension.create(),
+				YamlFrontMatterExtension.create()
 		);
 		Parser parser = Parser
 				.builder()
@@ -91,6 +81,9 @@ public class Main{
 				})
 				.build();
 		Node document = parser.parse(md);
+		var yamlVisitor = new YamlFrontMatterVisitor();
+		document.accept(yamlVisitor);
+		var yamlData = yamlVisitor.getData();
 		HtmlRenderer renderer = HtmlRenderer
 				.builder()
 				.extensions(extensions)
@@ -103,8 +96,11 @@ public class Main{
 			rendered = rendered.replace("{" + tag + "}", "<span class=\"" + tag + "Text\">");
 		rendered = rendered.replace("{!}", "</span>");
 		
-		rendered = template.replace("CONTENT", rendered);
+		// handle template replacements
+		String template = Files.readString(Path.of("./templates", yamlData.getOrDefault("template", List.of("default")).getFirst() + ".html"));
+		template = template.replace("[[CONTENT]]", rendered);
+		template = template.replace("[[OUT]]", outPath);
 		
-		return rendered;
+		return template;
 	}
 }
