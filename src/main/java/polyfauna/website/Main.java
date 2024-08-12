@@ -20,7 +20,10 @@ import java.util.Map;
 
 public class Main{
 	
-	private static final List<String> memberTags = List.of("li", "lu", "ch", "ha", "re", "dy");
+	private static final List<String> memberTags = List.of(
+			"li", "lu", "ch", "ha", "re", "dy",
+			"poly"
+	);
 	
 	public static void main(String[] args) throws IOException{
 		Path rootPath = Path.of("./pages").toAbsolutePath().normalize();

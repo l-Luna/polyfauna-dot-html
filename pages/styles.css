@@ -51,6 +51,10 @@ blockquote{
     color: #fd33ee;
 }
 
+.chText{
+    color: #0ef884;
+}
+
 .luText{
     color: #efea0c;
 }
@@ -63,6 +67,47 @@ blockquote{
     color: #4646c5;
 }
 
-.chText{
-    color: #0ef884;
+.dyText{
+
+}
+
+/* dance on hover */
+
+@property --angle{
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes spin{
+    from{
+        --angle: 0deg;
+    }
+    to{
+        --angle: 360deg;
+    }
+}
+
+.polyText{
+    --angle: 0deg;
+
+    text-shadow:
+            calc(sin(var(--angle))*3px) calc(cos(var(--angle))*3px) 2px #fd33ee,
+            calc(sin(var(--angle) + 72deg)*3px) calc(cos(var(--angle) + 72deg)*3px) 2px #0ef884,
+            calc(sin(var(--angle) + 144deg)*3px) calc(cos(var(--angle) + 144deg)*3px) 2px #f37632,
+            calc(sin(var(--angle) + 216deg)*3px) calc(cos(var(--angle) + 216deg)*3px) 2px #efea0c,
+            calc(sin(var(--angle) + 288deg)*3px) calc(cos(var(--angle) + 288deg)*3px) 2px #4646c5;
+}
+
+.polyText:hover{
+    animation-name: spin;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@media (prefers-reduced-motion: reduce){
+    .polyText:hover{
+        animation-name: none;
+    }
 }
