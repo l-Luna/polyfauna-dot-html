@@ -14,6 +14,13 @@ a:visited{
     color: #17c7c7;
 }
 
+blockquote{
+    border-left: lightcyan thick groove;
+    margin-left: 0;
+    padding-left: 15px;
+    font-style: italic;
+}
+
 /* utility classes */
 
 .small{
