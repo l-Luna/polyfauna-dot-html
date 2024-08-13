@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/styles.css">
+        [[STYLES]]
+        <title>of polyfauna and mice</title>
+    </head>
+
+    <body>
+        <div class="container">
+            [[CONTENT]]
+
+            <!-- because we want actual js out here -->
+            <div>
+                <label>
+                    <span class="[[checker]]Text">answer: </span>
+                    <input type="text" id="riddleAnswer" />
+                </label>
+                <button class="[[checker]]Button" onclick="riddleCheck()">
+                    check!
+                </button>
+
+                <script>
+                    function riddleCheck(){
+                        const submitted = document.getElementById('riddleAnswer').value;
+                        if(submitted === "[[answer]]"){
+                            window.location.href = "./trick-mirrors.html";
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+    </body>
+</html>

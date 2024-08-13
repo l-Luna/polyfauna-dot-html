@@ -50,7 +50,7 @@ public class Main{
 				resolved = resolved.getParent().resolve(resolved.getFileName().toString().replace(".md", ".html"));
 				
 				String text = Files.readString(path);
-				String html = renderMarkdown(text, path.getParent().relativize(root).toString().replace('\\', '/'));
+				String html = renderMarkdown(text);
 				Files.createDirectories(resolved.getParent());
 				Files.writeString(resolved, html, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 			}else{
@@ -62,7 +62,7 @@ public class Main{
 		}
 	}
 	
-	private static String renderMarkdown(String md, String outPath) throws IOException{
+	private static String renderMarkdown(String md) throws IOException{
 		List<Extension> extensions = List.of(
 				StrikethroughExtension.create(),
 				TablesExtension.create(),
@@ -102,13 +102,10 @@ public class Main{
 		
 		// handle template replacements
 		String type = yamlData.getOrDefault("template", List.of("default")).getFirst();
-		return handleSubstitutions(Files.readString(Path.of("./templates", type + ".html")), yamlData, type, outPath, rendered);
+		return handleSubstitutions(Files.readString(Path.of("./templates", type + ".html")), yamlData, type, rendered);
 	}
 	
-	private static String handleSubstitutions(String template, Map<String, List<String>> data, String type, String outPath, String rendered){
-		// this stays first, always used once
-		template = template.replace("[[OUT]]", outPath);
-		
+	private static String handleSubstitutions(String template, Map<String, List<String>> data, String type, String rendered){
 		// add additional styles
 		StringBuilder styles = new StringBuilder();
 		for(String style : data.getOrDefault("styles", List.of()))

@@ -64,7 +64,7 @@ blockquote{
 }
 
 .reText{
-    color: #4646c5;
+    color: #5858f3;
 }
 
 .dyText{
@@ -96,7 +96,7 @@ blockquote{
             calc(sin(var(--angle) + 72deg)*3px) calc(cos(var(--angle) + 72deg)*3px) 2px #0ef884,
             calc(sin(var(--angle) + 144deg)*3px) calc(cos(var(--angle) + 144deg)*3px) 2px #f37632,
             calc(sin(var(--angle) + 216deg)*3px) calc(cos(var(--angle) + 216deg)*3px) 2px #efea0c,
-            calc(sin(var(--angle) + 288deg)*3px) calc(cos(var(--angle) + 288deg)*3px) 2px #4646c5;
+            calc(sin(var(--angle) + 288deg)*3px) calc(cos(var(--angle) + 288deg)*3px) 2px #5858f3;
 }
 
 .polyText:hover{
@@ -110,4 +110,22 @@ blockquote{
     .polyText:hover{
         animation-name: none;
     }
+}
+
+/* buttons */
+
+.haButton{
+    background-color: #222222;
+    color: #f37632;
+    border-color: #884423;
+    border-radius: 5px;
+    padding: 1px 5px 3px;
+}
+
+.luButton{
+    background-color: #222222;
+    color: #efea0c;
+    border-color: #858404;
+    border-radius: 5px;
+    padding: 1px 5px 3px;
 }
