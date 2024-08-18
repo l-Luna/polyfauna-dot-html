@@ -1,0 +1,22 @@
+html{
+    background-color: #ffffff;
+}
+
+a:link{
+    color: #047575;
+}
+
+a:visited{
+    color: #047575;
+}
+
+.container{
+    background-color: #aaaaaa;
+    border: none;
+    box-shadow: black 0 0 8px;
+}
+
+.haText{
+    color: #98491e;
+}
+

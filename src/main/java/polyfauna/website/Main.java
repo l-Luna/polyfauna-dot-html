@@ -25,6 +25,8 @@ public class Main{
 			"poly"
 	);
 	
+	
+	
 	public static void main(String[] args) throws IOException{
 		Path rootPath = Path.of("./pages").toAbsolutePath().normalize();
 		if(!Files.exists(rootPath) || !Files.isDirectory(rootPath)){
