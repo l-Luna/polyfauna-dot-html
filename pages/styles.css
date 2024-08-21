@@ -140,7 +140,7 @@ blockquote{
     margin: 5px 0;
 }
 
-/* we want the semantics of h2, but the styling is much too strong */
+/* we want the semantics of h2, but the styling is too strong */
 .blogIndex h2{
     font-size: 18px;
     display: inline;
