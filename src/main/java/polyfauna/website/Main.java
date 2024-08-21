@@ -133,7 +133,7 @@ public class Main{
 			for(var entry : pageYamls.entrySet()){
 				if(entry.getKey().startsWith(asFolder)){
 					blogIndex.append("<li> <a href=\"/")
-							.append(entry.getKey().toString().replace('\\', '/'))
+							.append(entry.getKey().toString().replace('\\', '/').replace(".md", ""))
 							.append("\">")
 							.append(entry.getValue().get("title").getFirst())
 							.append("</a> </li>");
