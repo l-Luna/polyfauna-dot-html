@@ -129,3 +129,24 @@ blockquote{
     border-radius: 5px;
     padding: 1px 5px 3px;
 }
+
+/* blog styling */
+
+.blogIndex{
+    line-height: 120%;
+}
+
+.blogIndex > li{
+    margin: 5px 0;
+}
+
+/* we want the semantics of h2, but the styling is much too strong */
+.blogIndex h2{
+    font-size: 18px;
+    display: inline;
+}
+
+.timestamp{
+    font-style: italic;
+    font-size: 80%;
+}

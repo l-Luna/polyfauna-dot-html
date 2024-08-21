@@ -15,9 +15,7 @@ import org.commonmark.renderer.html.HtmlRenderer;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main{
 	
@@ -130,16 +128,23 @@ public class Main{
 			String filename = relativePath.getFileName().toString();
 			Path asFolder = relativePath.getParent().resolve(filename.substring(0, filename.length() - 3));
 			StringBuilder blogIndex = new StringBuilder("<ul class=\"blogIndex\">");
-			for(var entry : pageYamls.entrySet()){
+			var entries = new ArrayList<>(pageYamls.entrySet());
+			entries.sort(Comparator.comparing(x -> x.getValue().getOrDefault("date", List.of("2024-00-00")).getFirst()));
+			for(var entry : entries.reversed()){
 				if(entry.getKey().startsWith(asFolder)){
-					blogIndex.append("<li> <a href=\"/")
+					blogIndex.append("\n\t\t\t\t<li> <h2> <a href=\"/")
 							.append(entry.getKey().toString().replace('\\', '/').replace(".md", ""))
 							.append("\">")
 							.append(entry.getValue().get("title").getFirst())
-							.append("</a> </li>");
+							.append("</a> </h2>");
+					if(entry.getValue().containsKey("date"))
+						blogIndex.append("<span class=\"timestamp\"><br/> at ")
+								.append(entry.getValue().get("date").getFirst())
+								.append("</span>");
+					blogIndex.append("</li>");
 				}
 			}
-			blogIndex.append("</ul>");
+			blogIndex.append("\n\t\t\t</ul>");
 			template = template.replace("[[INDEX]]", blogIndex);
 		}
 		
