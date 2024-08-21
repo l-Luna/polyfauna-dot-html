@@ -15,6 +15,7 @@ import org.commonmark.renderer.html.HtmlRenderer;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class Main{
 			"poly"
 	);
 	
-	
+	private static final Map<Path, Map<String, List<String>>> pageYamls = new HashMap<>();
 	
 	public static void main(String[] args) throws IOException{
 		Path rootPath = Path.of("./pages").toAbsolutePath().normalize();
@@ -46,13 +47,14 @@ public class Main{
 	private static void apply(Path root, Path target, Path path){
 		if(!Files.isRegularFile(path))
 			return;
-		Path resolved = target.resolve(root.relativize(path));
+		Path relative = root.relativize(path);
+		Path resolved = target.resolve(relative);
 		try{
 			if(path.toString().endsWith(".md")){
 				resolved = resolved.getParent().resolve(resolved.getFileName().toString().replace(".md", ".html"));
 				
 				String text = Files.readString(path);
-				String html = renderMarkdown(text);
+				String html = renderMarkdown(text, relative);
 				Files.createDirectories(resolved.getParent());
 				Files.writeString(resolved, html, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 			}else{
@@ -64,7 +66,7 @@ public class Main{
 		}
 	}
 	
-	private static String renderMarkdown(String md) throws IOException{
+	private static String renderMarkdown(String md, Path relativePath) throws IOException{
 		List<Extension> extensions = List.of(
 				StrikethroughExtension.create(),
 				TablesExtension.create(),
@@ -102,12 +104,15 @@ public class Main{
 			rendered = rendered.replace("{" + tag + "}", "<span class=\"" + tag + "Text\">");
 		rendered = rendered.replace("{!}", "</span>");
 		
+		// here, we make the bold assumption that the contents of the folder `f` are visited before the file `f.md`
+		pageYamls.put(relativePath, yamlData);
+		
 		// handle template replacements
 		String type = yamlData.getOrDefault("template", List.of("default")).getFirst();
-		return handleSubstitutions(Files.readString(Path.of("./templates", type + ".html")), yamlData, type, rendered);
+		return handleSubstitutions(Files.readString(Path.of("./templates", type + ".html")), yamlData, type, rendered, relativePath);
 	}
 	
-	private static String handleSubstitutions(String template, Map<String, List<String>> data, String type, String rendered){
+	private static String handleSubstitutions(String template, Map<String, List<String>> data, String type, String rendered, Path relativePath){
 		// add additional styles
 		StringBuilder styles = new StringBuilder();
 		for(String style : data.getOrDefault("styles", List.of()))
@@ -118,6 +123,24 @@ public class Main{
 		for(String substitute : data.getOrDefault("substitutions", List.of())){
 			var split = substitute.split("=");
 			template = template.replace("[[" + split[0].trim() + "]]", split[1].trim());
+		}
+		
+		if(type.equals("blog-list")){
+			// we assume that all the blog entries have already been visited
+			String filename = relativePath.getFileName().toString();
+			Path asFolder = relativePath.getParent().resolve(filename.substring(0, filename.length() - 3));
+			StringBuilder blogIndex = new StringBuilder("<ul class=\"blogIndex\">");
+			for(var entry : pageYamls.entrySet()){
+				if(entry.getKey().startsWith(asFolder)){
+					blogIndex.append("<li> <a href=\"/")
+							.append(entry.getKey().toString().replace('\\', '/'))
+							.append("\">")
+							.append(entry.getValue().get("title").getFirst())
+							.append("</a> </li>");
+				}
+			}
+			blogIndex.append("</ul>");
+			template = template.replace("[[INDEX]]", blogIndex);
 		}
 		
 		// this stays last, introduces the most text

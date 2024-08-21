@@ -1,6 +1,6 @@
 ---
 template: blog-entry
-title: quiet-down
+title: quiet down
 date: 2024-6-26
 ---
 
