@@ -4,7 +4,7 @@ title: an interloper with many faces
 date: 2024-8-24
 ---
 
-my office is empty, clean, and silent. nothing stays here for long; no untouched paperwork nor untouched pleasantries adorn my desk, only the quiet tune of the wind outside reminding you of it's connection to the world outside. nothing wants to stay here for long.
+my office is empty, clean, and silent. nothing stays here for long; no untouched paperwork nor untouched pleasantries adorn my desk, only the quiet tune of the wind outside reminding you of its connection to the world outside. nothing wants to stay here for long.
 
 soon, our little chit-chat will be interrupted by an unwelcome visitor. I am sorry to cut it short so early, but I have work to do.
 
