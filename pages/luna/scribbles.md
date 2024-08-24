@@ -2,4 +2,4 @@
 template: blog-list
 ---
 
-{li}_all_ the scribbles.{!}
+{lu}here's a bunch of things i've written, inexhaustively catalogued{!}
