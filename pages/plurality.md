@@ -58,6 +58,13 @@
 - {li}that have different names, identities, and are _not interchangeable_. if you know who you're talking to, and it's safe to refer to them properly, please do so! if you're not sure, please ask! don't just use another name or set of pronouns because it's easier, and don't ask for someone else to switch in without a very strong reason.{!}
 - {li}who may not know about your relationship with other headmates, or may not _want_ a similar relationship. not all of us will be your friend, or want to be as open as others, _and that's fine_.{!}
 - {li}with different interests, hobbies, and projects. (though, if you want to tell me about an interest you share with someone else, I won't say no!){!}
+- {li}with personal lives, self-consciousness, and comfort zones of their own. we have our own emotions and moods - much more than "the angry one" or "the responsible one".{!}
+
+{li}don't treat anyone as more or less important for fronting less or more frequently. in fact, don't treat any of us as being more or less important, more or less "real", than any others.{!}
+
+{li}you can refer to us as a group with our system name, Polyfauna, and they/them. use it like a name: "I had a nice discussion with Polyfauna" works fine.{!}
+
+{li}above all else, please feel free to ask us questions.{!}
 
 ## why are you plural?
 
@@ -86,6 +93,11 @@
 
 {lu}when it comes to text (or any kind of asynchronous communication), you might be talking to multiple of us at once, interleaved much faster than we can switch. here, the person in front is just passing on messages from someone in the back, or possibly passing them control of just e.g. our hands to let them write something, without properly giving up control. that's *proxying!* like the fronter is just acting like a proxy between you and the person in the back. you can try talking to them like that irl too but don't expect any good results from us{!}
 
+### memory separation
+
+{li}like many systems, our memories are separate. when one person is in front, they will typically be the only one to remember those experiences; anyone active in the back may too. given the need, we can choose to share memories with eachother, though we usually prefer to respect eachother's privacy{!}
+
+{li}little things sometimes leak through, on the order of words or phrases, usually when one person thinks about a past experience with somebody else around. we _can_ intentionally hide a memory, too, but we don't know just how reliable that is yet.{!}
 
 ### headspace and metaphors
 
