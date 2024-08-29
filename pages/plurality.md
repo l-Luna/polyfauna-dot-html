@@ -95,7 +95,7 @@
 
 ### memory separation
 
-{li}like many systems, our memories are separate. when one person is in front, they will typically be the only one to remember those experiences; anyone active in the back may too. given the need, we can choose to share memories with eachother, though we usually prefer to respect eachother's privacy{!}
+{li}like many systems, our memories are separate. when one person is in front, they will typically be the only one to remember those experiences; anyone active in the back may too. given the need, we can choose to share memories with eachother, though we usually prefer to respect eachother's privacy and keep things separate.{!}
 
 {li}little things sometimes leak through, on the order of words or phrases, usually when one person thinks about a past experience with somebody else around. we _can_ intentionally hide a memory, too, but we don't know just how reliable that is yet.{!}
 
