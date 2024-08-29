@@ -52,9 +52,12 @@
 
 ## how should I treat you?
 
-{li}some fairly ordinary questions suddenly become difficult to answer; nobody expects to get more than word, let alone a _list_ of names and paragraphs of explanation out of "what's your name?"{!}
+{li}some fairly ordinary questions suddenly become difficult to answer; nobody expects to get more than word, let alone a _list_ of names and explanation out of "what's your name?". even when we're past the initial introductions, getting across the real depth of plurality is hard; there is so much that "multiple people" doesn't get across in itself, things that even we only discover over time.{!}
 
-{li}(I'll fill in this section in the future.){!}
+{li}for the basics, treat us like different people:{!}
+- {li}that have different names, identities, and are _not interchangeable_. if you know who you're talking to, and it's safe to refer to them properly, please do so! if you're not sure, please ask! don't just use another name or set of pronouns because it's easier, and don't ask for someone else to switch in without a very strong reason.{!}
+- {li}who may not know about your relationship with other headmates, or may not _want_ a similar relationship. not all of us will be your friend, or want to be as open as others, _and that's fine_.{!}
+- {li}with different interests, hobbies, and projects. (though, if you want to tell me about an interest you share with someone else, I won't say no!){!}
 
 ## why are you plural?
 
