@@ -2,7 +2,7 @@
 template: intro
 substitutions:
   - name = chloe
-  - pronouns = they/them
+  - pronouns = they/them, she/her
   - species = unicorn
 ---
 
