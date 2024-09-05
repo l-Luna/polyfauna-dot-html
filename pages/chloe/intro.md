@@ -6,8 +6,10 @@ substitutions:
   - species = unicorn
 ---
 
+{ch}hi! im chloe{!}
+
 {ch}shy bunny peeking through the bushes gives you a flower and runs off{!}
 
----
+{ch}talking is hard but i can type sometimes <br /> yes/no questions and small number questions are good though <br /> and i do want to meet people{!}
 
-{lu}chloe's skittish and doesn't often show themself, but has a sweet and lovely presence. they've helped us through some hard times, and is now slowly working up the courage to talk to people more freely; say hi sometime, and be nice to them for me }:3{!}
+{ch}i love the world and everyone in it{!}
